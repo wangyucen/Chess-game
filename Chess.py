@@ -730,37 +730,37 @@ while True:
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     elif board[currentPlayerPosition]=='♖':
         rook_move(currentPlayerPosition,targetPlayerPosition,'♖')
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     elif board[currentPlayerPosition]=='♘':
         knight_move(currentPlayerPosition,targetPlayerPosition,'♘')
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     elif board[currentPlayerPosition]=='♗':
         bishop_move(currentPlayerPosition,targetPlayerPosition,'♗')
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     elif board[currentPlayerPosition]=='♔':
         king_move(currentPlayerPosition,targetPlayerPosition,'♔')
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     elif board[currentPlayerPosition]=='♕':
         queen_move(currentPlayerPosition,targetPlayerPosition,'♕')
         print_board()
         if not check_mate('♚',board.index('♚')):
             blackKing_check = True
-            print("The black king is being checked!")
+            print("The black king gets into check!")
     else:
         print("not a valid input")
     if check_mate('♔',board.index('♔')):
@@ -786,37 +786,37 @@ while True:
 
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     elif board[currentPlayerPosition]=='♜':
         rook_move(currentPlayerPosition,targetPlayerPosition,'♜')
         print_board()
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     elif board[currentPlayerPosition]=='♞':
         knight_move(currentPlayerPosition,targetPlayerPosition,'♞')
         print_board()
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     elif board[currentPlayerPosition]=='♝':
         bishop_move(currentPlayerPosition,targetPlayerPosition,'♝')
         print_board()
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     elif board[currentPlayerPosition]=='♚':
         king_move(currentPlayerPosition,targetPlayerPosition,'♚')
         print_board()
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     elif board[currentPlayerPosition]=='♛':
         queen_move(currentPlayerPosition,targetPlayerPosition,'♛')
         print_board()
         if not check_mate('♔',board.index('♔')):
             whiteKing_check = True
-            print("The white king is being checked!")
+            print("The white king gets into check!")
     else:
         print("not a valid input")
     if check_mate('♚',board.index('♚')):
