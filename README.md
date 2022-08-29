@@ -10,6 +10,8 @@ Such as:
 * check mate
 * king positioning(1+rank required between each)
 * player movement, illegal movement
+* input validation
+
 
 The project will be optimized in the future
 
