@@ -8,7 +8,7 @@ Basic features applied
 Such as:
 * pawn promotion
 * check mate
-* king positioning(1+rank required betwwen each)
+* king positioning(1+rank required between each)
 * player movement, illegal movement
 
 The project will be optimized in the future
