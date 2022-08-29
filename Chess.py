@@ -43,11 +43,11 @@ def promote_pawn_white(target_pos):
             elif promotion == '3':
                 board[target_pos]='♗'
             elif promotion == '4':
-                boardp[target_pos]='♕'
+                board[target_pos]='♕'
             else:
-                print("invalid input")
+                print("not a valid input, please try again")
         else:
-            print("invalid input")
+            print("not a valid input, please try again")
 
 def promote_pawn_black(target_pos):
     if target_pos in first_row :
@@ -61,11 +61,11 @@ def promote_pawn_black(target_pos):
             elif promotion == '3':
                 board[target_pos]='♝'
             elif promotion == '4':
-                boardp[target_pos]='♛'
+                board[target_pos]='♛'
             else:
-                print("invalid input")
+                print("not a valid input, please try again")
         else:
-            print("invalid input")
+            print("not a valid input, please try again")
 
 
 def pawn_move(current_pos, target_pos,pawn):
@@ -89,7 +89,7 @@ def pawn_move(current_pos, target_pos,pawn):
                 board[current_pos] = '▭'
                 board[target_pos] = pawn
             else:
-                print("not a valid input")
+                print("not a valid input, please try again")
         else:
             if(target_pos - current_pos)==-8 and board[target_pos]=='▭':
                 board[current_pos]='▭'
@@ -108,7 +108,7 @@ def pawn_move(current_pos, target_pos,pawn):
                 board[target_pos] = pawn
                 promote_pawn_white(target_pos)
             else:
-                print("not a valid input")
+                print("not a valid input, please try again")
     if not isWhite:
         if current_pos in range(8,16):
 
@@ -125,7 +125,7 @@ def pawn_move(current_pos, target_pos,pawn):
                 board[current_pos] = '▭'
                 board[target_pos] = pawn
             else:
-                print("not a valid input")
+                print("not a valid input, please try again")
         else:
             if(target_pos - current_pos)==8 and board[target_pos]=='▭':
                 board[current_pos]='▭'
@@ -144,7 +144,7 @@ def pawn_move(current_pos, target_pos,pawn):
                 board[target_pos] = pawn
                 promote_pawn_black(target_pos)
             else:
-                print("not a valid input")
+                print("not a valid input, please try again")
 
 def bishop_move(current_pos, target_pos,bishop):
     if bishop in white:
@@ -161,15 +161,15 @@ def bishop_move(current_pos, target_pos,bishop):
             check_col = current_col-1
             while check_row<target_row:
                 if board[count_index(check_row,check_col)] !='▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row+=1
                 check_col-=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = bishop
@@ -178,15 +178,15 @@ def bishop_move(current_pos, target_pos,bishop):
             check_col = current_col+1
             while check_col<target_col:
                 if board[count_index(check_row,check_col)]!='▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row-=1
                 check_col+=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = bishop
@@ -196,15 +196,15 @@ def bishop_move(current_pos, target_pos,bishop):
             check_col = current_col+1
             while check_row<target_row:
                 if board[count_index(check_row, check_col)] != '▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row+=1
                 check_col+=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = bishop
@@ -213,20 +213,20 @@ def bishop_move(current_pos, target_pos,bishop):
             check_col=current_col-1
             while check_row>target_row:
                 if board[count_index(current_row, current_col)] != '▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row-=1
                 check_col-=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = bishop
     else:
-        print("not a valid input")
+        print("not a valid input, please try again")
 
 def rook_move(current_pos,target_pos,rook):
     if rook in white:
@@ -271,9 +271,9 @@ def rook_move(current_pos,target_pos,rook):
                     break
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = rook
@@ -281,18 +281,18 @@ def rook_move(current_pos,target_pos,rook):
             while target_row<current_row:
                 current_row-=1
                 if board[count_index(target_row,target_col)] != '▭':
-                    print("invalid input")
+                    print("not a valid input, please try again")
                     break
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = rook
     else:
-        print("not a valid input")
+        print("not a valid input, please try again")
 
 
 
@@ -305,15 +305,15 @@ def knight_move(current_pos,target_pos,knight):
             current_pos+17,current_pos+10,current_pos+15,current_pos+6]
     if target_pos in list:
         if board[target_pos] in white and isWhite:
-            print("not a valid input")
+            print("not a valid input, please try again")
         elif board[target_pos] in black and not isWhite:
-            print("not a valid input")
+            print("not a valid input, please try again")
         else:
             board[current_pos] = '▭'
             board[target_pos] = knight
 
     else:
-        print("not a valid input")
+        print("not a valid input, please try again")
 
 def queen_move(current_pos,target_pos,queen):
     if queen in white:
@@ -356,14 +356,14 @@ def queen_move(current_pos,target_pos,queen):
             check_row = current_row+1
             while target_row>check_row:
                 if board[count_index(check_row,target_col)] != '▭':
-                    print("invalid input")
+                    print("not a valid input, please try again")
                     break
                 check_row += 1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
@@ -376,9 +376,9 @@ def queen_move(current_pos,target_pos,queen):
                 check_row -= 1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
@@ -389,15 +389,15 @@ def queen_move(current_pos,target_pos,queen):
             check_col=current_col-1
             while target_row > check_row:
                 if board[count_index(check_row,check_col)] !='▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row+=1
                 check_col-=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
@@ -406,15 +406,15 @@ def queen_move(current_pos,target_pos,queen):
             check_col=current_col+1
             while target_row < check_row:
                 if board[count_index(check_row,check_col)]!='▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row-=1
                 check_col+=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
@@ -425,15 +425,15 @@ def queen_move(current_pos,target_pos,queen):
             check_col = current_col+1
             while target_row > check_row:
                 if board[count_index(check_row,check_col)] != '▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row+=1
                 check_col+=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
@@ -442,27 +442,27 @@ def queen_move(current_pos,target_pos,queen):
             check_col=check_col-1
             while target_row<check_row:
                 if board[count_index(current_row, current_col)] != '▭':
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                     break
                 check_row-=1
                 check_col-=1
             else:
                 if board[target_pos] in white and isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 elif board[target_pos] in black and not isWhite:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
                 else:
                     board[current_pos] = '▭'
                     board[target_pos] = queen
     else:
-        print("not a valid input")
+        print("not a valid input, please try again")
 
 def king_move(current_pos,target_pos,king):
     black_row, black_col = count_row_col(board.index('♚'))
-    white_row, white_col = count_row_col(board,index('♔'))
+    white_row, white_col = count_row_col(board.index('♔'))
 
     if target_pos>63 or target_pos<0:
-        print("not a valid input")
+        print("not a valid input, please try again")
     else:
         if king in white:
             isWhite = True
@@ -476,40 +476,40 @@ def king_move(current_pos,target_pos,king):
                 current_pos+7,current_pos+9]
                 if target_pos in listw:
                     if board[target_pos] in white and isWhite:
-                        print("not a valid input")
+                        print("not a valid input, please try again")
                     elif board[target_pos] in black and not isWhite:
-                        print("not a valid input")
+                        print("not a valid input, please try again")
                     else:
                         if check_mate(king,target_pos):
                             board[current_pos] = '▭'
                             board[target_pos] = king
                         else:
-                            print("not a valid input")
+                            print("not a valid input, please try again")
             if not isWhite:
                 listb =[current_pos+1,current_pos-1,current_pos-8,
                 current_pos-7,current_pos-9]
                 if target_pos in listb:
                     if board[target_pos] in white and isWhite:
-                        print("not a valid input")
+                        print("not a valid input, please try again")
                     elif board[target_pos] in black and not isWhite:
-                        print("not a valid input")
+                        print("not a valid input, please try again")
                     else:
                         if check_mate(king,target_pos):
                             board[current_pos] = '▭'
                             board[target_pos] = king
                         else:
-                            print("not a valid input")
+                            print("not a valid input, please try again")
         elif target_pos in list:
             if board[target_pos] in white and isWhite:
-                print("not a valid input")
+                print("not a valid input, please try again")
             elif board[target_pos] in black and not isWhite:
-                print("not a valid input")
+                print("not a valid input, please try again")
             else:
                 if check_mate(king, target_pos):
                     board[current_pos] = '▭'
                     board[target_pos] = king
                 else:
-                    print("not a valid input")
+                    print("not a valid input, please try again")
 
 def check_mate(king,king_index):
     king_row,king_col = count_row_col(king_index)
@@ -710,117 +710,181 @@ whiteKing_check = False
 print_board()
 while True:
 #White player
-    if blackKing_check == True:
+    if blackKing_check:
         print("Game Over, white player win!!")
         break
-    playerPosition = input("White turn,Please insert a valid chess position you wanna move(eg.a2): ")
-    col_number = bottom_panel.index(playerPosition[-2])
-    row_number = board_size-int(playerPosition[-1])
+    repeat_white = True
+    while repeat_white:
+        playerPosition = input("White turn,Please insert a valid chess position you wanna move(eg.a2): ")
+        col_number = bottom_panel.index(playerPosition[-2])
+        row_number = board_size-int(playerPosition[-1])
 #    print(row_number,col_number)
-    currentPlayerPosition = count_index(row_number,col_number)
+        currentPlayerPosition = count_index(row_number,col_number)
 #    print(currentPlayerPosition)
-    playerPosition = input("What is the target position you would like to move to: ")
-    col_number = bottom_panel.index(playerPosition[-2])
-    row_number = board_size-int(playerPosition[-1])
-    targetPlayerPosition = count_index(row_number,col_number)
+        playerPosition = input("What is the target position you would like to move to: ")
+        col_number = bottom_panel.index(playerPosition[-2])
+        row_number = board_size-int(playerPosition[-1])
+        targetPlayerPosition = count_index(row_number,col_number)
 #    print(targetPlayerPosition)
 
-    if board[currentPlayerPosition]=='♙':
-        pawn_move(currentPlayerPosition,targetPlayerPosition,'♙')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    elif board[currentPlayerPosition]=='♖':
-        rook_move(currentPlayerPosition,targetPlayerPosition,'♖')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    elif board[currentPlayerPosition]=='♘':
-        knight_move(currentPlayerPosition,targetPlayerPosition,'♘')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    elif board[currentPlayerPosition]=='♗':
-        bishop_move(currentPlayerPosition,targetPlayerPosition,'♗')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    elif board[currentPlayerPosition]=='♔':
-        king_move(currentPlayerPosition,targetPlayerPosition,'♔')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    elif board[currentPlayerPosition]=='♕':
-        queen_move(currentPlayerPosition,targetPlayerPosition,'♕')
-        print_board()
-        if not check_mate('♚',board.index('♚')):
-            blackKing_check = True
-            print("The black king gets into check!")
-    else:
-        print("not a valid input")
+        if board[currentPlayerPosition]=='♙':
+            temp = board.copy()
+            pawn_move(currentPlayerPosition,targetPlayerPosition,'♙')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        elif board[currentPlayerPosition]=='♖':
+            temp = board.copy()
+            rook_move(currentPlayerPosition,targetPlayerPosition,'♖')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        elif board[currentPlayerPosition]=='♘':
+            temp = board.copy()
+            knight_move(currentPlayerPosition,targetPlayerPosition,'♘')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        elif board[currentPlayerPosition]=='♗':
+            temp = board.copy()
+            bishop_move(currentPlayerPosition,targetPlayerPosition,'♗')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        elif board[currentPlayerPosition]=='♔':
+            temp = board.copy()
+            king_move(currentPlayerPosition,targetPlayerPosition,'♔')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        elif board[currentPlayerPosition]=='♕':
+            temp = board.copy()
+            queen_move(currentPlayerPosition,targetPlayerPosition,'♕')
+            if temp != board:
+                repeat_white = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♚',board.index('♚')):
+                blackKing_check = True
+                print("The black king gets into check!")
+        else:
+            print("not a valid input, please try again")
+
     if check_mate('♔',board.index('♔')):
-        whiteKing_check=False
+        whiteKing_check = False
 #Black player
-    if whiteKing_check == True:
+
+    if whiteKing_check:
         print("Game Over, black player win!!")
         break
-    playerPosition = input("Black turn,Please insert a valid chess position you wanna move(eg.a2): ")
-    col_number = bottom_panel.index(playerPosition[-2])
-    row_number = board_size-int(playerPosition[-1])
+    repeat_black = True
+    while repeat_black:
+        playerPosition = input("Black turn,Please insert a valid chess position you wanna move(eg.a2): ")
+        col_number = bottom_panel.index(playerPosition[-2])
+        row_number = board_size-int(playerPosition[-1])
 
-    currentPlayerPosition = count_index(row_number,col_number)
-    playerPosition = input("What is the target position you would like to move to: ")
-    col_number = bottom_panel.index(playerPosition[-2])
-    row_number = board_size-int(playerPosition[-1])
-    targetPlayerPosition = count_index(row_number,col_number)
+        currentPlayerPosition = count_index(row_number,col_number)
+        playerPosition = input("What is the target position you would like to move to: ")
+        col_number = bottom_panel.index(playerPosition[-2])
+        row_number = board_size-int(playerPosition[-1])
+        targetPlayerPosition = count_index(row_number,col_number)
 
-    if board[currentPlayerPosition]=='♟':
-
-        pawn_move(currentPlayerPosition,targetPlayerPosition,'♟')
-        print_board()
-
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    elif board[currentPlayerPosition]=='♜':
-        rook_move(currentPlayerPosition,targetPlayerPosition,'♜')
-        print_board()
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    elif board[currentPlayerPosition]=='♞':
-        knight_move(currentPlayerPosition,targetPlayerPosition,'♞')
-        print_board()
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    elif board[currentPlayerPosition]=='♝':
-        bishop_move(currentPlayerPosition,targetPlayerPosition,'♝')
-        print_board()
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    elif board[currentPlayerPosition]=='♚':
-        king_move(currentPlayerPosition,targetPlayerPosition,'♚')
-        print_board()
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    elif board[currentPlayerPosition]=='♛':
-        queen_move(currentPlayerPosition,targetPlayerPosition,'♛')
-        print_board()
-        if not check_mate('♔',board.index('♔')):
-            whiteKing_check = True
-            print("The white king gets into check!")
-    else:
-        print("not a valid input")
+        if board[currentPlayerPosition]=='♟':
+            temp = board.copy()
+            pawn_move(currentPlayerPosition,targetPlayerPosition,'♟')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        elif board[currentPlayerPosition]=='♜':
+            temp = board.copy()
+            rook_move(currentPlayerPosition,targetPlayerPosition,'♜')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        elif board[currentPlayerPosition]=='♞':
+            temp = board.copy()
+            knight_move(currentPlayerPosition,targetPlayerPosition,'♞')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        elif board[currentPlayerPosition]=='♝':
+            temp = board.copy()
+            bishop_move(currentPlayerPosition,targetPlayerPosition,'♝')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        elif board[currentPlayerPosition]=='♚':
+            temp = board.copy()
+            king_move(currentPlayerPosition,targetPlayerPosition,'♚')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        elif board[currentPlayerPosition]=='♛':
+            temp = board.copy()
+            queen_move(currentPlayerPosition,targetPlayerPosition,'♛')
+            if temp != board:
+                repeat_black = False
+            else:
+                continue
+            print_board()
+            if not check_mate('♔',board.index('♔')):
+                whiteKing_check = True
+                print("The white king gets into check!")
+        else:
+            print("not a valid input,please try again")
     if check_mate('♚',board.index('♚')):
-        blackKing_check=False
+        blackKing_check = False
 
 
 
