@@ -1,7 +1,7 @@
 board = ['♜','♞','♝','♛','♚','♝','♞','♜',
          '♟','♟','♟','♟','♟','♟','♟','♟',
          '▭','▭','▭','▭','▭','▭','▭','▭',
-         '▭','▭','▭','▭','▭','▭','▭','▭',
+         '▭','▭','▭','▭','♙','▭','▭','▭',
          '▭','▭','▭','▭','▭','▭','▭','▭',
          '▭','▭','▭','▭','▭','▭','▭','▭',
          '♙','♙','♙','♙','♙','♙','♙','♙',
@@ -13,6 +13,9 @@ first_row=[0,1,2,3,4,5,6,7]
 last_row=[56,57,58,59,60,61,62,63]
 black = ['♞','♝','♛','♚','♜','♟']
 white = ['♘','♗','♕','♔','♖','♙']
+
+
+
 
 board_size = 8
 def print_board():
@@ -48,6 +51,7 @@ def promote_pawn_white(target_pos):
                 print("not a valid input, please try again")
         else:
             print("not a valid input, please try again")
+
 
 def promote_pawn_black(target_pos):
     if target_pos in first_row :
@@ -702,12 +706,15 @@ def count_row_col(index):
 def count_index(row,col):
     return (((row+1)-1)*board_size + (col+1))-1
 
-#print(count_index(0,6))
+print(count_index(4,6))
 #print(count_row_col(60))
 blackKing_check = False
 whiteKing_check = False
-
+en_passant_white_pos = 0
+en_passant_black_pos = 0
+print("<<<<<<Chess Game>>>>>>")
 print_board()
+
 while True:
 #White player
     if blackKing_check:
@@ -716,20 +723,41 @@ while True:
     repeat_white = True
     while repeat_white:
         playerPosition = input("White turn,Please insert a valid chess position you wanna move(eg.a2): ")
-        col_number = bottom_panel.index(playerPosition[-2])
-        row_number = board_size-int(playerPosition[-1])
+        current_col_number = bottom_panel.index(playerPosition[-2])
+        current_row_number = board_size-int(playerPosition[-1])
 #    print(row_number,col_number)
-        currentPlayerPosition = count_index(row_number,col_number)
+        currentPlayerPosition = count_index(current_row_number,current_col_number)
 #    print(currentPlayerPosition)
-        playerPosition = input("What is the target position you would like to move to: ")
-        col_number = bottom_panel.index(playerPosition[-2])
-        row_number = board_size-int(playerPosition[-1])
-        targetPlayerPosition = count_index(row_number,col_number)
+        playerPosition = input("What is the desired position you would like to move to: ")
+        target_col_number = bottom_panel.index(playerPosition[-2])
+        target_row_number = board_size-int(playerPosition[-1])
+        targetPlayerPosition = count_index(target_row_number,target_col_number)
 #    print(targetPlayerPosition)
 
         if board[currentPlayerPosition]=='♙':
             temp = board.copy()
-            pawn_move(currentPlayerPosition,targetPlayerPosition,'♙')
+            if (currentPlayerPosition in first_column) and current_row_number==3 and currentPlayerPosition+1==en_passant_black_pos and targetPlayerPosition==17:
+                board[currentPlayerPosition+1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♙'
+            elif (currentPlayerPosition in last_column) and current_row_number==3 and currentPlayerPosition-1==en_passant_black_pos and targetPlayerPosition==22:
+                board[currentPlayerPosition-1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♙'
+            elif currentPlayerPosition-1==en_passant_black_pos and currentPlayerPosition-1-8 == targetPlayerPosition:
+                board[currentPlayerPosition-1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♙'
+            elif currentPlayerPosition+1==en_passant_black_pos and currentPlayerPosition+1-8 == targetPlayerPosition:
+                board[currentPlayerPosition+1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♙'
+            else:
+                pawn_move(currentPlayerPosition, targetPlayerPosition, '♙')
+                if current_row_number == 6 and target_row_number == 4:
+                    en_passant_white_pos= targetPlayerPosition
+
+
             if temp != board:
                 repeat_white = False
             else:
@@ -740,6 +768,7 @@ while True:
                 print("The black king gets into check!")
         elif board[currentPlayerPosition]=='♖':
             temp = board.copy()
+
             rook_move(currentPlayerPosition,targetPlayerPosition,'♖')
             if temp != board:
                 repeat_white = False
@@ -795,9 +824,10 @@ while True:
                 print("The black king gets into check!")
         else:
             print("not a valid input, please try again")
-
+    en_passant_black_pos=0
     if check_mate('♔',board.index('♔')):
         whiteKing_check = False
+
 #Black player
 
     if whiteKing_check:
@@ -806,18 +836,38 @@ while True:
     repeat_black = True
     while repeat_black:
         playerPosition = input("Black turn,Please insert a valid chess position you wanna move(eg.a2): ")
-        col_number = bottom_panel.index(playerPosition[-2])
-        row_number = board_size-int(playerPosition[-1])
+        current_col_number = bottom_panel.index(playerPosition[-2])
+        current_row_number = board_size-int(playerPosition[-1])
 
-        currentPlayerPosition = count_index(row_number,col_number)
+        currentPlayerPosition = count_index(current_row_number,current_col_number)
         playerPosition = input("What is the target position you would like to move to: ")
-        col_number = bottom_panel.index(playerPosition[-2])
-        row_number = board_size-int(playerPosition[-1])
-        targetPlayerPosition = count_index(row_number,col_number)
+        target_col_number = bottom_panel.index(playerPosition[-2])
+        target_row_number = board_size-int(playerPosition[-1])
+        targetPlayerPosition = count_index(target_row_number,target_col_number)
 
         if board[currentPlayerPosition]=='♟':
             temp = board.copy()
-            pawn_move(currentPlayerPosition,targetPlayerPosition,'♟')
+            if (currentPlayerPosition in first_column) and current_row_number==4 and currentPlayerPosition+1==en_passant_white_pos and targetPlayerPosition==33:
+                board[currentPlayerPosition+1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♟'
+            elif (currentPlayerPosition in last_column) and current_row_number==4 and currentPlayerPosition-1==en_passant_white_pos and targetPlayerPosition==38:
+                board[currentPlayerPosition-1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♟'
+            elif currentPlayerPosition-1==en_passant_white_pos and currentPlayerPosition-1+8 == targetPlayerPosition:
+                board[currentPlayerPosition-1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♟'
+            elif currentPlayerPosition+1==en_passant_white_pos and currentPlayerPosition+1+8 == targetPlayerPosition:
+                board[currentPlayerPosition+1]='▭'
+                board[currentPlayerPosition]='▭'
+                board[targetPlayerPosition]='♟'
+            else:
+                pawn_move(currentPlayerPosition,targetPlayerPosition,'♟')
+                if current_row_number == 1 and target_row_number == 3:
+                    en_passant_black_pos = targetPlayerPosition
+
             if temp != board:
                 repeat_black = False
             else:
@@ -828,6 +878,8 @@ while True:
                 print("The white king gets into check!")
         elif board[currentPlayerPosition]=='♜':
             temp = board.copy()
+
+
             rook_move(currentPlayerPosition,targetPlayerPosition,'♜')
             if temp != board:
                 repeat_black = False
@@ -883,6 +935,7 @@ while True:
                 print("The white king gets into check!")
         else:
             print("not a valid input,please try again")
+    en_passant_white_pos=0
     if check_mate('♚',board.index('♚')):
         blackKing_check = False
 
