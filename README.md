@@ -9,6 +9,7 @@ Such as:
 * pawn promotion
 * check mate
 * king positioning(1+rank required between each)
+* en passant
 * player movement, illegal movement
 * input validation
 
