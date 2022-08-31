@@ -1,7 +1,7 @@
 board = ['♜','♞','♝','♛','♚','♝','♞','♜',
          '♟','♟','♟','♟','♟','♟','♟','♟',
          '▭','▭','▭','▭','▭','▭','▭','▭',
-         '▭','▭','▭','▭','♙','▭','▭','▭',
+         '▭','▭','▭','▭','▭','▭','▭','▭',
          '▭','▭','▭','▭','▭','▭','▭','▭',
          '▭','▭','▭','▭','▭','▭','▭','▭',
          '♙','♙','♙','♙','♙','♙','♙','♙',
@@ -712,16 +712,51 @@ blackKing_check = False
 whiteKing_check = False
 en_passant_white_pos = 0
 en_passant_black_pos = 0
+move_black_king = False
+move_black_left_rook = False
+move_black_right_rook = False
+move_white_king = False
+move_white_right_rook =False
+move_white_left_rook=False
+white_kingside_castling = False
+white_queenside_castling = False
+black_kingside_castling = False
+black_queenside_castling = False
 print("<<<<<<Chess Game>>>>>>")
 print_board()
+
 
 while True:
 #White player
     if blackKing_check:
         print("Game Over, white player win!!")
         break
+    if not whiteKing_check and not move_white_king and not move_white_right_rook and board[62]== '▭' and board[61]=='▭':
+        inp=input("White turn,kingside castling conditions fullfilled, type y/Y to enable the castling, or n/N to skip: ")
+        if inp.lower() == "y":
+            board[63] = '▭'
+            board[62] = '♔'
+            board[61] = '♖'
+            board[60] = '▭'
+            white_kingside_castling = True
+            print_board()
+        if inp.lower() == "n":
+           print("skipping...")
+    if not whiteKing_check and not move_white_king and not move_white_left_rook and board[59]=='▭' and board[58] == '▭'and board[57]=='▭':
+        inp=input("White turn,queenside castling conditions fullfilled, type y/Y to enable the castling, or n/N to skip: ")
+        if inp.lower == "y":
+            board[56]='▭'
+            board[57]='▭'
+            board[58]='♔'
+            board[59]='♖'
+            board[60]='▭'
+            white_queenside_castling=True
+            print_board()
+        if inp.lower == "n":
+            print("skipping...")
     repeat_white = True
-    while repeat_white:
+
+    while repeat_white and not white_kingside_castling and not white_queenside_castling:
         playerPosition = input("White turn,Please insert a valid chess position you wanna move(eg.a2): ")
         current_col_number = bottom_panel.index(playerPosition[-2])
         current_row_number = board_size-int(playerPosition[-1])
@@ -770,6 +805,10 @@ while True:
             temp = board.copy()
 
             rook_move(currentPlayerPosition,targetPlayerPosition,'♖')
+            if board[63] != '♖':
+                move_white_right_rook=True
+            if board[56] != '♖':
+                move_white_left_rook=True
             if temp != board:
                 repeat_white = False
             else:
@@ -803,6 +842,8 @@ while True:
         elif board[currentPlayerPosition]=='♔':
             temp = board.copy()
             king_move(currentPlayerPosition,targetPlayerPosition,'♔')
+            if board[60]!= '♔':
+                move_white_king = True
             if temp != board:
                 repeat_white = False
             else:
@@ -824,6 +865,8 @@ while True:
                 print("The black king gets into check!")
         else:
             print("not a valid input, please try again")
+    white_kingside_castling = False
+    white_queenside_castling =False
     en_passant_black_pos=0
     if check_mate('♔',board.index('♔')):
         whiteKing_check = False
@@ -833,8 +876,31 @@ while True:
     if whiteKing_check:
         print("Game Over, black player win!!")
         break
+    if not blackKing_check and not move_black_king and not move_black_right_rook and board[5]== '▭' and board[6]=='▭':
+        inp=input("Black turn,kingside castling conditions fullfilled, type y/Y to enable the castling, or n/N to skip: ")
+        if inp.lower() == "y":
+            board[4] = '▭'
+            board[6] = '♔'
+            board[5] = '♖'
+            board[7] = '▭'
+            black_kingside_castling= True
+            print_board()
+        if inp.lower() == "n":
+           print("skipping...")
+    if not blackKing_check and not move_black_king and not move_black_left_rook and board[1]=='▭' and board[2] == '▭'and board[3]=='▭':
+        inp=input("White turn,queenside castling conditions fullfilled, type y/Y to enable the castling, or n/N to skip: ")
+        if inp.lower == "y":
+            board[1]='▭'
+            board[2]='▭'
+            board[3]='♔'
+            board[4]='♖'
+            board[5]='▭'
+            black_queenside_castling=True
+            print_board()
+        if inp.lower == "n":
+            print("skipping...")
     repeat_black = True
-    while repeat_black:
+    while repeat_black and not black_kingside_castling and not black_queenside_castling:
         playerPosition = input("Black turn,Please insert a valid chess position you wanna move(eg.a2): ")
         current_col_number = bottom_panel.index(playerPosition[-2])
         current_row_number = board_size-int(playerPosition[-1])
@@ -878,9 +944,11 @@ while True:
                 print("The white king gets into check!")
         elif board[currentPlayerPosition]=='♜':
             temp = board.copy()
-
-
             rook_move(currentPlayerPosition,targetPlayerPosition,'♜')
+            if board[0] != '♜':
+                move_black_right_rook=True
+            if board[7] != '♜':
+               move_black_left_rook=True
             if temp != board:
                 repeat_black = False
             else:
@@ -914,6 +982,8 @@ while True:
         elif board[currentPlayerPosition]=='♚':
             temp = board.copy()
             king_move(currentPlayerPosition,targetPlayerPosition,'♚')
+            if board[4]!= '♔':
+                move_black_king = True
             if temp != board:
                 repeat_black = False
             else:
@@ -936,6 +1006,8 @@ while True:
         else:
             print("not a valid input,please try again")
     en_passant_white_pos=0
+    black_kingside_castling = False
+    black_queenside_castling = False
     if check_mate('♚',board.index('♚')):
         blackKing_check = False
 
