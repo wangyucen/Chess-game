@@ -11,6 +11,7 @@ Such as:
 * king positioning(1+rank required between each)
 * en passant
 * player movement, illegal movement
+* castling
 * input validation
 
 
