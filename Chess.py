@@ -243,7 +243,7 @@ def rook_move(current_pos, target_pos, rook):
         isWhite = False
     current_row, current_col = count_row_col(current_pos)
     target_row, target_col = count_row_col(target_pos)
-    if target_pos // 10 == current_pos // 10:
+    if target_row == current_row:
         if target_pos > current_pos:
             for i in range(current_pos + 1, target_pos):
                 if board[i] != '▭':
@@ -272,11 +272,12 @@ def rook_move(current_pos, target_pos, rook):
                     board[target_pos] = rook
     elif current_col == target_col:
         if target_row > current_row:
-            while target_row > current_row:
-                current_row += 1
-                if board[count_index(target_row, target_col)] != '▭':
+            check_row = current_row+1
+            while target_row > check_row:
+                if board[count_index(check_row, target_col)] != '▭':
                     print("invalid input")
                     break
+                check_row+=1
             else:
                 if board[target_pos] in white and isWhite:
                     print("not a valid input, please try again")
@@ -286,11 +287,12 @@ def rook_move(current_pos, target_pos, rook):
                     board[current_pos] = '▭'
                     board[target_pos] = rook
         if target_row < current_row:
-            while target_row < current_row:
-                current_row -= 1
-                if board[count_index(target_row, target_col)] != '▭':
+            check_row = current_row-1
+            while target_row < check_row:
+                if board[count_index(check_row, target_col)] != '▭':
                     print("not a valid input, please try again")
                     break
+                check_row -= 1
             else:
                 if board[target_pos] in white and isWhite:
                     print("not a valid input, please try again")
